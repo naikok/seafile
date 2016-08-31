@@ -1,8 +1,34 @@
 <?php
+require_once 'Curl/Curl.php'; 
+
 /**
  * @author Sergio Gayarre Garasa <sergio.gayarre@businessdecision.com>
  * @desc This class is an intermediate class to connect with SeaFile Web API through requests by curl.
  */
+ 
+interface Exception {
+    const OK = 200;
+    const CREATED = 201;
+    const ACCEPTED = 202;
+    const MOVED_PERMANENTLY = 301;
+    const BAD_REQUEST = 400;
+    const FORBIDDEN = 403;
+    const NOT_FOUND = 404;
+    const CONFLICT = 409;
+    const TOO_MANY_REQUESTS = 429;
+    const REPO_PASSWD_REQUIRED = 440;
+    const REPO_PASSWD_MAGIC_REQUIRED = 441;
+    const INTERNAL_SERVER_ERROR = 500;
+    const OPERATION_FAILED = 520;
+    /** @const Error code: Generic seafile error */
+    const SF_ERROR        = 70000;
+    /** @const Error code: No auth token. You have to login first */
+    const NO_TOKEN        = 70001;
+    /** @const Error code: Undefined host */
+    const UNDEFINED_HOST  = 70404;
+    /** @const Error code: No response from host */
+    const NO_RESPONSE     = 70500;
+}
 
 class Client2 {
 
@@ -16,7 +42,7 @@ class Client2 {
             if((!$sHost)||is_null($sHost))
                 throw new Exception("Host is undefined host");
             $this->sUrl = rtrim($sHost, '/');
-            $this->oRestCurlClient = new  \Curl\Curl();
+            $this->oRestCurlClient = new Curl();
         }
     
         public function getCurlClient(){
