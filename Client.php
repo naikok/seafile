@@ -2,7 +2,7 @@
 require_once 'Curl/Curl.php'; 
 
 /**
- * @author Sergio Gayarre Garasa <sergio.gayarre@businessdecision.com>
+ * @author Sergio Gayarre Garasa
  * @desc This class is an intermediate class to connect with SeaFile Web API through requests by curl.
  */
  
